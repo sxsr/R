@@ -133,11 +133,11 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(20px) brightness(0.7) contrast(1.2);
+  filter: blur(20px) brightness(0.3) contrast(1.2);
   opacity: 0.6;
   z-index: -2;
   transition: background-image 0.8s ease;
-} 
+}
 
 /* طبقة إضافية للتداخل */
 .music-player::after {
