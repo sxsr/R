@@ -1,0 +1,499 @@
+/* خلفية الموقع وحجم الصوره عدل براحتك */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Cairo', sans-serif;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+  background-color: #000;
+  position: relative;
+  min-height: 100vh;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* هنا الصوره الدايريه المتوهجه */
+.glow-image-container {
+  margin-top: 80px;
+  animation: float 4s ease-in-out infinite;
+}
+.glow-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3),
+              0 0 35px rgba(0, 0, 0, 0.3);
+  animation: pulseGlow 2.5s ease-in-out infinite, float 4s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3),
+                0 0 35px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.4),
+                0 0 55px rgba(0, 0, 0, 0.5);
+  }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* هنا النص الكبير */
+.intro-text {
+  margin-top: 30px;
+  padding: 20px;
+}
+.intro-text h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+   background: linear-gradient(90deg, #ffffff, #ffffff, #470b0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.intro-text p {
+  font-size: 1.2rem;
+  max-width: 500px;
+  margin: auto;
+  color: #ddd;
+}
+
+
+/* زر تغيير اللغة */
+.lang-toggle {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  box-shadow: 0 0 6px rgba(255,255,255,0.15);
+}
+
+
+/* جملة الموسيقى */
+.music-note {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #eee;
+}
+
+
+/* مشغل الموسيقى الجديد - تصميم ايفون */
+.music-player {
+  margin: 20px auto;
+  padding: 16px;
+  max-width: 450px;
+  background: rgba(30, 30, 30, 0.85);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: white;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.8s ease;
+}
+
+/* خلفية ديناميكية للبطاقة */
+.music-player::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(20px) brightness(0.3) contrast(1.2);
+  opacity: 0.6;
+  z-index: -2;
+  transition: background-image 0.8s ease;
+}
+
+/* طبقة إضافية للتداخل */
+.music-player::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* صورة الألبوم */
+.album-art {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+}
+
+.album-art img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* محتوى المشغل */
+.player-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+/* معلومات الجهاز */
+.device-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.device-text {
+  font-size: 11px;
+  color: #aaa;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* عنوان الأغنية */
+#song-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* اسم الفنان */
+#artist-name {
+  font-size: 14px;
+  color: #aaa;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* قسم التقدم */
+.progress-section {
+  margin: 8px 0 6px 0;
+}
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: white;
+  border-radius: 2px;
+  width: 25%;
+  transition: width 0.1s ease;
+}
+
+/* عرض الكلمات */
+.lyrics-preview {
+  font-size: 11px;
+  color: #999;
+  font-style: italic;
+  margin: 6px 0;
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+/* أزرار التحكم */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 6px 0;
+}
+
+.control-btn {
+  background: none;
+  color: white;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  padding: 8px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.play-pause {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+/* قسم الصوت */
+.volume-section {
+  margin-top: 4px;
+}
+
+.volume-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  position: relative;
+}
+
+.volume-fill {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  width: 70%;
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 480px) {
+  .music-player {
+    margin: 15px;
+    padding: 14px;
+    gap: 14px;
+    max-width: calc(100vw - 30px);
+    height: auto;
+    min-height: 110px;
+  }
+  
+  .album-art {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+  }
+  
+  .player-content {
+    flex: 1;
+    min-height: 100px;
+    gap: 3px;
+    justify-content: space-between;
+  }
+  
+  .device-text {
+    font-size: 9px;
+  }
+  
+  #song-title {
+    font-size: 13px;
+    line-height: 1.1;
+  }
+  
+  #artist-name {
+    font-size: 11px;
+    line-height: 1.1;
+  }
+  
+  .progress-section {
+    margin: 4px 0 3px 0;
+  }
+  
+  .time-display {
+    font-size: 8px;
+    margin-bottom: 2px;
+  }
+  
+  .progress-bar {
+    height: 3px;
+  }
+  
+  .lyrics-preview {
+    font-size: 8px;
+    margin: 3px 0;
+    line-height: 1.1;
+  }
+  
+  .controls {
+    gap: 12px;
+    margin: 3px 0;
+  }
+  
+  .control-btn {
+    font-size: 12px;
+    width: 26px;
+    height: 26px;
+  }
+  
+  .play-pause {
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .volume-section {
+    margin-top: 2px;
+  }
+  
+  .volume-bar {
+    height: 3px;
+  }
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 360px) {
+  .music-player {
+    margin: 12px;
+    padding: 12px;
+    gap: 12px;
+    max-width: calc(100vw - 24px);
+    min-height: 95px;
+  }
+  
+  .album-art {
+    width: 85px;
+    height: 85px;
+  }
+  
+  .player-content {
+    min-height: 85px;
+    gap: 2px;
+  }
+  
+  .device-text {
+    font-size: 8px;
+  }
+  
+  #song-title {
+    font-size: 12px;
+  }
+  
+  #artist-name {
+    font-size: 10px;
+  }
+  
+  .time-display {
+    font-size: 7px;
+  }
+  
+  .lyrics-preview {
+    font-size: 7px;
+    margin: 2px 0;
+  }
+  
+  .controls {
+    gap: 10px;
+    margin: 2px 0;
+  }
+  
+  .control-btn {
+    font-size: 11px;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .play-pause {
+    font-size: 13px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* تحسين للاتجاه RTL */
+[dir="rtl"] .music-player {
+  direction: ltr;
+}
+
+[dir="rtl"] .player-content {
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="rtl"] .time-display {
+  direction: ltr;
+}
+
+
+/* الفوتر الي هوه الكلام الي تحت حق الحقوق محفوظه*/
+footer {
+  margin-top: 60px;
+  padding: 20px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.social-icons {
+  margin: 15px auto 25px auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(255 255 255 / 0.1);
+  padding: 10px 25px;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(255 255 255 / 0.1);
+  width: fit-content;
+}
+.social-icons a img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+.social-icons a:hover img {
+  transform: scale(1.1);
+}
