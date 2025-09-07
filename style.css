@@ -124,18 +124,19 @@ body {
 
 /* خلفية ديناميكية للبطاقة */
 .music-player::before {
+.music-player::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-size: cover;
-  background-position: center;
+  background-size: cover;      /* تغطي كامل مساحة البطاقة */
+  background-position: center; /* مركز الصورة داخل البطاقة */
   background-repeat: no-repeat;
   filter: brightness(0.85) contrast(1.1); /* تغميق بسيط */
-  opacity: 0.95; /* شبه واضح لكن يغطي الفريم كامل */
-  z-index: -2;
+  opacity: 0.95;               /* تظهر واضحة لكن غامقة شوي */
+  z-index: -2;                 /* تبقى تحت محتوى البطاقة */
   transition: background-image 0.8s ease;
 }
 
