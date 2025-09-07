@@ -124,21 +124,20 @@ body {
 
 /* خلفية ديناميكية للبطاقة */
 .music-player::before {
-.music-player::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-size: cover;      /* تغطي كامل مساحة البطاقة */
-  background-position: center; /* مركز الصورة داخل البطاقة */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(0.85) contrast(1.1); /* تغميق بسيط */
-  opacity: 0.95;               /* تظهر واضحة لكن غامقة شوي */
-  z-index: -2;                 /* تبقى تحت محتوى البطاقة */
+  filter: brightness(0.85) contrast(1.2); /* أفتح الصورة شوي */
+  opacity: 0.6; /* نفس الشفافية اللي كانت عندك */
+  z-index: -2;
   transition: background-image 0.8s ease;
-}
+} 
 
 /* صورة الألبوم */
 .album-ar.music-player::before {
