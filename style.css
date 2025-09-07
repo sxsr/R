@@ -133,30 +133,26 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(0.85) contrast(1.2); /* أفتح الصورة شوي */
-  opacity: 0.6; /* نفس الشفافية اللي كانت عندك */
+  filter: blur(20px) brightness(0.3) contrast(1.2);
+  opacity: 0.6;
   z-index: -2;
   transition: background-image 0.8s ease;
-} 
+}
 
-/* صورة الألبوم */
-.album-ar.music-player::before {
+/* طبقة إضافية للتداخل */
+.music-player::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(0.8) contrast(1.1); /* خلفية أغمق شوي فقط */
-  opacity: 0.9; /* أوضح وأكثر امتلاء */
-  z-index: -2;
-  transition: background-image 0.8s ease;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
 }
-  
-  t {
+
+/* صورة الألبوم */
+.album-art {
   flex-shrink: 0;
   width: 120px;
   height: 120px;
