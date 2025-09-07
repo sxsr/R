@@ -124,20 +124,7 @@ body {
 
 /* خلفية ديناميكية للبطاقة */
 .music-player::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(20px) brightness(0.7) contrast(1.2);
-  opacity: 0.6;
-  z-index: -2;
-  transition: background-image 0.8s ease;
-} 
+
 
 /* طبقة إضافية للتداخل */
 .music-player::after {
@@ -152,7 +139,23 @@ body {
 }
 
 /* صورة الألبوم */
-.album-art {
+.album-ar.music-player::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.8) contrast(1.1); /* خلفية أغمق شوي فقط */
+  opacity: 0.9; /* أوضح وأكثر امتلاء */
+  z-index: -2;
+  transition: background-image 0.8s ease;
+}
+  
+  t {
   flex-shrink: 0;
   width: 120px;
   height: 120px;
