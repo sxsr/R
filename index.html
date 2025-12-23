@@ -7,51 +7,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <meta name="description" content=" Silver ">
-  <title>- HAMAD -</title>
   <meta name="keywords" content="Want some cookies ?">
   <link rel="icon" href="images/profile.png">
-  
 </head>
 <body>
 
-  
-  <button id="langBtn" class="lang-toggle">EN</button>
+  <!-- زر التبديل (أضفت style بسيط لضمان قابلية النقر فوق العناصر الأخرى) -->
+  <button id="langBtn" class="lang-toggle" style="position:fixed; top:16px; right:16px; z-index:9999;">EN</button>
 
- 
   <div class="background"></div>
 
-  
   <div class="glow-image-container">
     <img src="images/profile.png" alt="image" class="glow-image" />
   </div>
 
-  
   <div class="social-icons">
-  <a href="https://www.instagram.com/hamadsallahi?igsh=eGF2OHVvdXRmNDV4" target="_blank" rel="noopener" aria-label="Instagram">
+    <a href="https://www.instagram.com/hamadsallahi?igsh=eGF2OHVvdXRmNDV4" target="_blank" rel="noopener" aria-label="Instagram">
       <img src="images/instagram-icon.png" alt="Instagram" />
     </a>
     <a href="https://t.me/aiil1" target="_blank" rel="noopener" aria-label="Telegram">
       <img src="images/telegram-icon.png" alt="Telegram" />
     </a>
-  <a href="https://discord.com/users/1308281330660016242" target="_blank" rel="noopener" aria-label="de"> 
-      <img src="images/d-icon.png" alt="Pin" />
-    
-</a>
-   
+    <a href="https://discord.com/users/1308281330660016242" target="_blank" rel="noopener" aria-label="Discord">
+      <img src="images/d-icon.png" alt="Discord" />
+    </a>
   </div>
 
-  
-     
-   <section class="intro-text" id="text">
+  <section class="intro-text" id="text">
     <h1 id="greeting">ياهلا والله</h1>
-   
-    <p class="music-note" id="musicText">Dear future lover,  
+
+    <p class="music-note" id="musicText">Dear future lover,
 I hope you understand if I want to take things slow.
-You have to understand that I don’t easily open up to people. 
+You have to understand that I don’t easily open up to people.
 I build walls. Lots of them. But if you’re lucky,
 the walls in your name will have windows and maybe even doors.</p>
 
-   
     <div class="music-player">
       <div class="album-art">
         <img id="album-cover" src="images/honestly.png" alt="Album Cover" />
@@ -64,19 +54,17 @@ the walls in your name will have windows and maybe even doors.</p>
         <p id="artist-name">Ariana Grande</p>
         <div class="progress-section">
           <div class="time-display">
-            <span id="current-time">0:10</span>
-            <span id="total-time">-4:39</span>
+            <span id="current-time">0:00</span>
+            <span id="total-time">-:--</span>
           </div>
           <div class="progress-bar">
             <div class="progress-fill" id="progress-fill"></div>
           </div>
         </div>
-        <div class="lyrics-preview" id="lyrics-preview">
-          touch me with a kiss, feel me on your lips
-        </div>
+        <div class="lyrics-preview" id="lyrics-preview">touch me with a kiss, feel me on your lips</div>
         <div class="controls">
           <button id="previousSong" class="control-btn">⏮</button>
-          <button id="playPause" class="control-btn play-pause">❚❚</button>
+          <button id="playPause" class="control-btn play-pause">▶</button>
           <button id="nextSong" class="control-btn">⏭</button>
         </div>
         <div class="volume-section">
@@ -88,163 +76,203 @@ the walls in your name will have windows and maybe even doors.</p>
     </div>
   </section>
 
- 
   <footer>
     <p id="copyright">All rights reserved © 2026</p>
   </footer>
 
   <script>
- 
-    const img = document.querySelector('.glow-image');
-    setInterval(() => {
-      img.classList.toggle('pulse');
-    }, 2000);
+    // انتظر تحميل DOM لتجنب أخطاء العناصر المفقودة
+    document.addEventListener('DOMContentLoaded', () => {
 
-    
-    const langBtn = document.getElementById('langBtn');
-    const textElements = {
-      ar: {
-        greeting: 'ياهلا والله',
-        musicText: 'Dear future lover,  
-I hope you understand if I want to take things slow. You have to understand that I don’t easily open up to people. I build walls. Lots of them. But if you’re lucky, the walls in your name will have windows and maybe even doors.',
-        copyright: 'All rights reserved © 2026 ',
-        dir: 'rtl',
-        lang: 'ar',
-        langSwitch: 'EN'
-      },
-      en: {
-        greeting: 'Hi there !',
-        musicText: 'Dear future lover,  
-I hope you understand if I want to take things slow. You have to understand that I don’t easily open up to people. I build walls. Lots of them. But if you’re lucky, the walls in your name will have windows and maybe even doors.',
-        copyright: 'All rights reserved © 2026',
-        dir: 'ltr',
-        lang: 'en',
-        langSwitch: 'AR'
+      // حماية من أخطاء الوصول للعناصر
+      const img = document.querySelector('.glow-image');
+      if (img) {
+        setInterval(() => {
+          img.classList.toggle('pulse');
+        }, 2000);
       }
-    };
 
-    let currentLang = 'ar';
-    langBtn.addEventListener('click', () => {
-      currentLang = currentLang === 'ar' ? 'en' : 'ar';
-      const content = textElements[currentLang];
-      document.documentElement.lang = content.lang;
-      document.documentElement.dir = content.dir;
-      document.getElementById('greeting').textContent = content.greeting;
-      document.getElementById('musicText').textContent = content.musicText;
-      document.getElementById('song-title').textContent = songs[currentSongIndex].title;
-      document.getElementById('copyright').textContent = content.copyright;
-      langBtn.textContent = content.langSwitch;
-    });
-
-    
-    const songs = [
-      { 
-        title: "Words by Skylar Grey", 
-        artist: "Skylar Grey",
-        src: "https://files.catbox.moe/l90vhn.m4a ",
-        cover: "images/d.png",
-        lyrics: "i miss you",
-        duration: "5:07"
-      },
-      { 
-        title: "stay", 
-        artist: "Ghostly Kisses ",
-        src: "https://files.catbox.moe/7nun8v.m4a",
-        cover: "images/r.png",
-        lyrics: "were are y ? I realy love y",
-        duration: "3:04"
-      },
-      { 
-        title: "Sweet Dreams", 
-        artist: "The Neighbourhood",
-        src: "https://files.catbox.moe/ffnezv.m4a",
-        cover: "images/w.png",
-        lyrics: "no girl friend no friends im alone.",
-        duration: "5:12"
-      }
-    ];
-
-    let currentSongIndex = 0;
-    const audio = new Audio(songs[currentSongIndex].src);
-    const playPauseBtn = document.getElementById('playPause');
-    const nextBtn = document.getElementById('nextSong');
-    const prevBtn = document.getElementById('previousSong');
-    const songTitle = document.getElementById('song-title');
-    const artistName = document.getElementById('artist-name');
-    const albumCover = document.getElementById('album-cover');
-    const lyricsPreview = document.getElementById('lyrics-preview');
-    const currentTime = document.getElementById('current-time');
-    const totalTime = document.getElementById('total-time');
-    const progressFill = document.getElementById('progress-fill');
-    let isPlaying = false;
-
-    function updateSongInfo() {
-      const song = songs[currentSongIndex];
-      songTitle.textContent = song.title;
-      artistName.textContent = song.artist;
-      albumCover.src = song.cover;
-      lyricsPreview.textContent = song.lyrics;
-      totalTime.textContent = song.duration;
-      
-      // تحديث خلفية البطاقة بصورة الأغنية الحالية
-      const musicPlayer = document.querySelector('.music-player');
-      const playerBefore = musicPlayer;
-      playerBefore.style.setProperty('--current-song-bg', `url(${song.cover})`);
-      
-      // تطبيق الخلفية الجديدة
-      const style = document.createElement('style');
-      style.textContent = `
-        .music-player::before {
-          background-image: url(${song.cover}) !important;
+      // songs: تأكد من إزالة الفراغات الزائدة في الروابط
+      const songs = [
+        {
+          title: "Words by Skylar Grey",
+          artist: "Skylar Grey",
+          src: "https://files.catbox.moe/l90vhn.m4a",
+          cover: "images/d.png",
+          lyrics: "i miss you",
+          duration: "5:07"
+        },
+        {
+          title: "stay",
+          artist: "Ghostly Kisses",
+          src: "https://files.catbox.moe/7nun8v.m4a",
+          cover: "images/r.png",
+          lyrics: "were are y ? I realy love y",
+          duration: "3:04"
+        },
+        {
+          title: "Sweet Dreams",
+          artist: "The Neighbourhood",
+          src: "https://files.catbox.moe/ffnezv.m4a",
+          cover: "images/w.png",
+          lyrics: "no girl friend no friends im alone.",
+          duration: "5:12"
         }
-      `;
-      
-      // إزالة الستايل القديم وإضافة الجديد
-      const oldStyle = document.getElementById('dynamic-bg');
-      if (oldStyle) oldStyle.remove();
-      style.id = 'dynamic-bg';
-      document.head.appendChild(style);
-    }
+      ];
 
-    function formatTime(seconds) {
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs.toString().padStart(2, '0')}`;
-    }
+      // ترجمة النصوص — استخدمت backticks لسلاسل متعددة الأسطر
+      const textElements = {
+        ar: {
+          greeting: 'ياهلا والله',
+          musicText: `عزيزي/عزيزتي المستقبل/ة،
+أتمنى أن تتفهم إن كنت أريد أن أمضي الأمور ببطء.
+عليك أن تفهم أنني لا أفتح قلبي بسهولة.
+أبني جدرانًا. كثيرة. لكن إن كنت محظوظًا،
+فقد تكون لتلك الجدران نوافذ وربما أبواب.`,
+          copyright: 'All rights reserved © 2026',
+          dir: 'rtl',
+          lang: 'ar',
+          langSwitch: 'EN'
+        },
+        en: {
+          greeting: 'Hi there !',
+          musicText: `Dear future lover,
+I hope you understand if I want to take things slow.
+You have to understand that I don’t easily open up to people.
+I build walls. Lots of them. But if you’re lucky,
+the walls in your name will have windows and maybe even doors.`,
+          copyright: 'All rights reserved © 2026',
+          dir: 'ltr',
+          lang: 'en',
+          langSwitch: 'AR'
+        }
+      };
 
-    updateSongInfo();
+      // عناصر الواجهة
+      const langBtn = document.getElementById('langBtn');
+      const songTitle = document.getElementById('song-title');
+      const artistName = document.getElementById('artist-name');
+      const albumCover = document.getElementById('album-cover');
+      const lyricsPreview = document.getElementById('lyrics-preview');
+      const currentTime = document.getElementById('current-time');
+      const totalTime = document.getElementById('total-time');
+      const progressFill = document.getElementById('progress-fill');
+      const playPauseBtn = document.getElementById('playPause');
+      const nextBtn = document.getElementById('nextSong');
+      const prevBtn = document.getElementById('previousSong');
 
-    audio.addEventListener('timeupdate', () => {
-      if (audio.duration) {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = progress + '%';
-        currentTime.textContent = formatTime(audio.currentTime);
-      }
-    });
-
-    playPauseBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        audio.pause();
-        playPauseBtn.textContent = "▶";
-      } else {
-        audio.play();
-        playPauseBtn.textContent = "❚❚";
-      }
-      isPlaying = !isPlaying;
-    });
-
-    nextBtn.addEventListener('click', () => {
-      currentSongIndex = (currentSongIndex + 1) % songs.length;
+      let currentSongIndex = 0;
+      const audio = new Audio();
       audio.src = songs[currentSongIndex].src;
-      updateSongInfo();
-      if (isPlaying) audio.play();
-    });
+      let isPlaying = false;
 
-    prevBtn.addEventListener('click', () => {
-      currentSongIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1;
-      audio.src = songs[currentSongIndex].src;
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60) || 0;
+        const secs = Math.floor(seconds % 60) || 0;
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      function updateSongInfo() {
+        const song = songs[currentSongIndex];
+        if (songTitle) songTitle.textContent = song.title;
+        if (artistName) artistName.textContent = song.artist;
+        if (albumCover) albumCover.src = song.cover || 'images/profile.png';
+        if (lyricsPreview) lyricsPreview.textContent = song.lyrics || '';
+        if (totalTime) totalTime.textContent = song.duration || '-:--';
+
+        // بدل من تعديل ::before قم بتعيين الخلفية على العنصر نفسه (أكثر أماناً)
+        const musicPlayer = document.querySelector('.music-player');
+        if (musicPlayer) {
+          musicPlayer.style.backgroundImage = `url(${song.cover})`;
+          musicPlayer.style.backgroundSize = 'cover';
+          musicPlayer.style.backgroundPosition = 'center';
+          musicPlayer.style.backgroundRepeat = 'no-repeat';
+        }
+      }
+
+      // تحديث شريط التقدم عندما تكون البيانات جاهزة
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration && progressFill) {
+          const progress = (audio.currentTime / audio.duration) * 100;
+          progressFill.style.width = progress + '%';
+          if (currentTime) currentTime.textContent = formatTime(audio.currentTime);
+        }
+      });
+
+      // عندما يتم تحميل بيانات الملف الصوتي (نحدث الوقت الإجمالي)
+      audio.addEventListener('loadedmetadata', () => {
+        if (audio.duration && totalTime) {
+          totalTime.textContent = formatTime(audio.duration);
+        }
+      });
+
+      // حماية play/pause من أن يسبب خطأ لو العنصر غير موجود
+      if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', () => {
+          if (isPlaying) {
+            audio.pause();
+            playPauseBtn.textContent = "▶";
+          } else {
+            const playPromise = audio.play();
+            // بعض المتصفحات ترجع Promise عند التشغيل
+            if (playPromise !== undefined) {
+              playPromise.catch(err => {
+                // خطأ في التشغيل (مثلاً سياسة autoplay) — لا نريد تعليق التنفيذ
+                console.warn('Audio play failed:', err);
+              });
+            }
+            playPauseBtn.textContent = "❚❚";
+          }
+          isPlaying = !isPlaying;
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          currentSongIndex = (currentSongIndex + 1) % songs.length;
+          audio.src = songs[currentSongIndex].src;
+          updateSongInfo();
+          if (isPlaying) {
+            audio.play().catch(e => console.warn(e));
+          }
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          currentSongIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1;
+          audio.src = songs[currentSongIndex].src;
+          updateSongInfo();
+          if (isPlaying) {
+            audio.play().catch(e => console.warn(e));
+          }
+        });
+      }
+
+      // زر تغيير اللغة — الآن لا يعتمد على وجود songs في نطاق موقوت
+      let currentLang = 'ar';
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          currentLang = currentLang === 'ar' ? 'en' : 'ar';
+          const content = textElements[currentLang];
+          if (content) {
+            document.documentElement.lang = content.lang;
+            document.documentElement.dir = content.dir;
+            const greetEl = document.getElementById('greeting');
+            const musicTextEl = document.getElementById('musicText');
+            const copyrightEl = document.getElementById('copyright');
+            if (greetEl) greetEl.textContent = content.greeting;
+            if (musicTextEl) musicTextEl.textContent = content.musicText;
+            if (copyrightEl) copyrightEl.textContent = content.copyright;
+            langBtn.textContent = content.langSwitch;
+          }
+        });
+      }
+
+      // تعيين أول أغنية عند بدء الصفحة
       updateSongInfo();
-      if (isPlaying) audio.play();
+      // ضبط مصدر الصوت (في حال لم يتم تعيينه أعلاه)
+      audio.src = songs[currentSongIndex].src;
     });
   </script>
 </body>
