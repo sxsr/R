@@ -106,8 +106,8 @@ body {
   margin: 20px auto;
   padding: 16px;
   max-width: 450px;
-  /* اغلاق الخلفية لتكون أغمق: غيّر rgba هنا */
-  background: rgba(10, 10, 10, 0.92);
+  /* أغلب الخلفية الآن: أقوى تغميق */
+  background: rgba(5, 5, 5, 0.96);
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   color: white;
@@ -124,7 +124,6 @@ body {
 }
 
 /* خلفية ديناميكية للبطاقة */
-/* خلفية ديناميكية للبطاقة */
 .music-player::before {
   content: '';
   position: absolute;
@@ -135,24 +134,24 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* خفّض السطوع لزيادة الغمق */
-  filter: brightness(0.12) contrast(1.05);
-  opacity: 0.9;
+  /* خفّض السطوع لكن اترك الصورة واضحة */
+  filter: brightness(0.14) contrast(1.05);
+  opacity: 0.95;
   z-index: -2;
   transition: background-image 0.8s ease;
 }
 
-/* طبقة إضافية للتداخل */
+/* طبقة إضافية للتداخل - الآن طبقة تغميق قوية تغطي كامل البطاقة */
 .music-player::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* زوّد قيمة alpha لزيادة التعتيم */
-  background: rgba(0, 0, 0, 0.65);
-  z-index: -1;
+  inset: 0;
+  /* تأكد من تغطية الحواف المستديرة */
+  border-radius: inherit;
+  /* تعتيم قوي مع بقاء الصورة ظاهرة قليلاً */
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* صورة الألبوم */
@@ -179,7 +178,8 @@ body {
   min-height: 120px;
   gap: 6px;
   position: relative;
-  z-index: 1;
+  /* أعلى من طبقة التعتيم */
+  z-index: 2;
 }
 
 /* معلومات الجهاز */
@@ -311,7 +311,7 @@ body {
 
 .volume-fill {
   height: 100%;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255,255,255,0.8);
   border-radius: 2px;
   width: 70%;
 }
@@ -475,8 +475,7 @@ body {
 
 
 
-
-/* الفوتر الي هوه الكلام الي تحت حق الحقوق محفوظه*/
+/* الفوتر الي هوه الكلام الي تحت حق الحقوق محفوفظة*/
 footer {
   margin-top: 60px;
   padding: 20px;
@@ -507,18 +506,13 @@ footer {
 
 
 
-
-
-
-
-
  .theme-fancy .music-player{
   display:flex;
   gap:18px;
   align-items:flex-start;
   padding: 18px;
   /* غيّرنا الخلفية لتكون أغمق أيضاً */
-  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+  background: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.9));
   border-radius: var(--card-radius);
   box-shadow: 0 8px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
   backdrop-filter: blur(8px) saturate(120%);
@@ -526,14 +520,17 @@ footer {
   overflow: hidden;
   position:relative;
 }
-/* faint diagonal sheen */
+/* faint diagonal sheen + dark overlay combined */
 .theme-fancy .music-player::after{
   content:"";
   position:absolute;
   inset:0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.02), transparent 20%);
+  border-radius: inherit;
+  /* dark overlay first, then subtle sheen */
+  background: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)), linear-gradient(120deg, rgba(255,255,255,0.02), transparent 20%);
+  background-blend-mode: normal, screen;
   pointer-events:none;
-  mix-blend-mode: screen;
+  z-index:0;
 }
 
 /* album art */
@@ -714,5 +711,4 @@ footer {
   .theme-fancy .music-player{
     padding:12px;
     gap:12px;
-
 
